@@ -26,8 +26,10 @@
     if (config[key]) link.href = config[key];
   });
   const sceneImage = document.querySelector(".scene-image");
-  if (sceneImage && config.backgroundImage) {
-    sceneImage.style.setProperty("--configured-scene-image", `url("${new URL(config.backgroundImage, location.href).href}")`);
+  if (config.backgroundImage) {
+    const backgroundImage = `url("${new URL(config.backgroundImage, location.href).href}")`;
+    document.documentElement.style.setProperty("--configured-scene-image", backgroundImage);
+    if (sceneImage) sceneImage.style.setProperty("--configured-scene-image", backgroundImage);
   }
 
   const weddingDate = new Date(config.weddingDate);
@@ -46,6 +48,12 @@
     document.querySelectorAll('[data-date="year"]').forEach((element) => { element.textContent = dateComponents.year; });
   }
   formattedWeddingDate = [dateComponents.day, dateComponents.month, dateComponents.year].filter(Boolean).join(" ");
+    const openingDate = document.querySelector('[data-copy="openingDate"]');
+    if (openingDate && !Number.isNaN(weddingDate.getTime())) {
+      openingDate.textContent = new Intl.DateTimeFormat("en-IN", {
+        timeZone: "Asia/Kolkata", day: "numeric", month: "long", year: "numeric"
+      }).format(weddingDate).toLocaleUpperCase("en-IN");
+    }
   document.querySelectorAll('[data-copy="countdownEyebrow"]').forEach((element) => {
     const dateLabel = config.language === "en" ? formattedWeddingDate.toLocaleUpperCase(config.dateLocale) : formattedWeddingDate;
     const cityLabel = config.language === "en" ? config.city.toLocaleUpperCase(config.dateLocale) : config.city;
@@ -154,8 +162,56 @@
     shareButton.href = "https://wa.me/?text=" + encodeURIComponent(message);
   }
 
+  const heartRain = document.querySelector(".heart-rain");
+  if (heartRain && !reducedMotion) {
+    const hearts = document.createDocumentFragment();
+    for (let index = 0; index < 16; index += 1) {
+      const heart = document.createElement("span");
+      heart.textContent = "♥";
+      heart.style.left = `${(index * 37) % 100}%`;
+      heart.style.setProperty("--fall-duration", `${14 + (index % 5) * 2}s`);
+      heart.style.setProperty("--fall-delay", `${-(index * 1.7)}s`);
+      heart.style.fontSize = `${8 + (index % 4) * 2}px`;
+      hearts.append(heart);
+    }
+    heartRain.append(hearts);
+  }
+
   if ("IntersectionObserver" in window && !reducedMotion) {
+    const segmenter = typeof Intl.Segmenter === "function"
+      ? new Intl.Segmenter(config.language, { granularity: "grapheme" })
+      : null;
+    const animatedText = document.querySelectorAll(
+      ".date-content .eyebrow > span:nth-child(2), .date-content .couple-names > span, .date-content .date-line > span, .date-content .city-line, .love-note, .venue-inner h2, .venue-inner .venue-name, .venue-inner .venue-address, .countdown-inner h2"
+    );
+    animatedText.forEach((element) => {
+      const originalText = element.textContent;
+      if (!originalText.trim() || (!segmenter && config.language !== "en")) return;
+      const parts = segmenter
+        ? Array.from(segmenter.segment(originalText), (part) => part.segment)
+        : Array.from(originalText);
+      const letters = document.createDocumentFragment();
+      let letterIndex = 0;
+      parts.forEach((part) => {
+        if (part === "\n") {
+          const lineBreak = document.createElement("br");
+          lineBreak.setAttribute("aria-hidden", "true");
+          letters.append(lineBreak);
+          return;
+        }
+        const letter = document.createElement("span");
+        letter.className = part.trim() ? "letter" : "letter-space";
+        letter.setAttribute("aria-hidden", "true");
+        letter.textContent = part;
+        if (part.trim()) letter.style.setProperty("--letter-index", letterIndex++);
+        letters.append(letter);
+      });
+      element.setAttribute("aria-label", originalText);
+      element.dataset.letterReveal = "";
+      element.replaceChildren(letters);
+    });
     document.body.classList.add("has-reveal");
+    const revealTargets = Array.from(document.querySelectorAll(".reveal"));
     const observer = new IntersectionObserver((entries, activeObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -164,7 +220,20 @@
         }
       });
     }, { threshold: 0.14 });
-    document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+    revealTargets.forEach((element) => observer.observe(element));
+    const revealVisibleInViewport = () => {
+      revealTargets.forEach((element) => {
+        if (element.classList.contains("is-visible")) return;
+        const bounds = element.getBoundingClientRect();
+        if (bounds.top < window.innerHeight * 0.95 && bounds.bottom > 0) {
+          element.classList.add("is-visible");
+          observer.unobserve(element);
+        }
+      });
+    };
+    window.addEventListener("scroll", revealVisibleInViewport, { passive: true });
+    window.addEventListener("resize", revealVisibleInViewport);
+    revealVisibleInViewport();
   } else {
     document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"));
   }

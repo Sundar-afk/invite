@@ -1,6 +1,6 @@
 const weddingConfig = Object.freeze({
-  groomName: "சுந்தர் எஸ்",
-  brideName: "ஹரிணி எஸ்",
+  groomName: "சுந்தர் S",
+  brideName: "ஹரிணி S",
   groomNameEnglish: "Sundar S",
   brideNameEnglish: "Harini S",
   weddingDate: "2026-11-13T00:00:00+05:30",
