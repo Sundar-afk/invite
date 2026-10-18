@@ -22,7 +22,7 @@ const weddingConfig = Object.freeze({
     sceneCaption: "A new chapter begins",
     saveTheDate: "SAVE THE DATE",
     photoCaption: "Two hearts, one beautiful beginning",
-    loveQuote: "We met through matrimony. Friendship grew into a bond we cannot live without. Real love takes time to bloom.",
+    loveQuote: "Life brought us together,\nlove made us inseparable,\nand now we begin a new chapter —\nhand in hand, heart to heart,\ncreating memories that last forever.",
     next: "NEXT",
     joinUs: "JOIN US",
     venueHeading: "Wedding Venue",
