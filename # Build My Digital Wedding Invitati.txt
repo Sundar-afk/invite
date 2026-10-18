@@ -1,0 +1,602 @@
+# Build My Digital Wedding Invitation Website
+
+Create a beautiful, premium, mobile-first wedding invitation website.
+
+This is NOT a business website and NOT a complex web application.
+
+It is a small digital wedding invitation that I will share through WhatsApp.
+
+Keep the implementation simple and reliable.
+
+## Technology
+
+Use ONLY:
+
+* HTML5
+* CSS3
+* Vanilla JavaScript
+
+Do not use React.
+Do not use Django.
+Do not use a backend.
+Do not use a database.
+
+The website must be deployable as a static website on GitHub Pages or Vercel.
+
+Use Google Fonts if needed.
+
+Use CSS animations and vanilla JavaScript for interactions.
+
+---
+
+# MAIN USER FLOW
+
+The website should have TWO main pages.
+
+## PAGE 1 — Opening / Surprise
+
+When someone opens the wedding URL, show a beautiful full-screen wedding opening screen like the real invite if user click invite box it should open like animation like invitation open it self
+
+Design should feel:
+
+* Romantic
+* Elegant
+* Premium
+* Indian wedding inspired
+* Modern
+* Mobile-first
+* put vinayagar symbel and murugan symbel and wedding invite can be open in tamil and English both languages so create two different websites so i can deploy like two different so can sed to two different people
+
+Display:
+
+"Together with the blessings of our families"
+
+Then:
+
+Sundar S
+
+❤️
+
+Harini S
+
+Then:
+
+"We are getting married"
+
+Show our couple/pre-wedding photo. which should be configurable like i can change any phot i want which i can put in any size and pixels then it should auto configure for the website as it needed
+
+Then show a prominent animated button:
+
+"✨ OPEN INVITATION"
+
+When the user clicks this button:
+
+* Play a subtle opening animation
+* Transition smoothly to Page 2
+* start background music which should be configure by my self
+* Do NOT force music before user interaction
+
+The opening screen should feel like a surprise. and backround like some golden temple and stars are falling animation or any other animation as suited
+
+---
+
+# PAGE 2 — INVITATION
+
+Page 2 should contain the actual wedding invitation.
+
+## Section 1 — Save the Date
+
+Display:
+
+SAVE THE DATE
+
+Sundar S
+
+❤️
+
+Harini S
+
+13 NOVEMBER 2026
+
+MADURAI
+
+Show our beautiful couple photo.
+
+Add elegant decorative elements such as:
+
+* Flowers
+* Gold ornaments
+* Subtle Indian wedding patterns
+* Soft particles
+* Elegant borders
+
+Do not make it overly flashy.
+
+and add coutes in poetic way which i am said below
+we have meet as a staranger feom materymony and have attached like one cannot live without other the bond is so strong and real connection take time like that
+
+---
+
+# Scrool dow arrow
+
+At the bottom of Page 2 create swipe dow n arrow so user can identify there is more below so easily can under stand
+
+"NEXT →"
+
+When swibed, smoothly reveal the next section/page.
+
+Do NOT reload the browser unnecessarily.
+
+Use a smooth transition.
+
+---
+
+# SECTION 2 — WEDDING LOCATION
+
+Display:
+
+"JOIN US"
+
+"Wedding Venue"
+
+[SIVA LAKSHMI MEETING HALL] configurabel
+
+[RAJAJI, MAIN, STREET 1, Tirumangalam, Tamil Nadu 625706]
+
+Create a large button: configurabel
+
+"📍 OPEN GOOGLE MAPS"
+
+url: https://maps.app.goo.gl/uLTbSF5GatFDXG1W8
+
+When clicked, open the configured Google Maps URL in a new tab.
+
+The Google Maps URL must be stored in one configuration variable so it can easily be changed later.
+
+Example:
+
+const weddingConfig = {
+mapsUrl: "YOUR_GOOGLE_MAPS_URL"
+};
+
+---
+
+# SECTION 3 — COUNTDOWN
+
+Display:
+
+"COUNTING DOWN TO OUR BIG DAY"
+
+Create a live countdown to:
+
+13 November 2026
+
+The countdown must display:
+
+DAYS
+HOURS
+MINUTES
+SECONDS
+
+Example:
+
+47        12        35        20
+DAYS      HOURS     MINUTES   SECONDS
+
+Update every second.
+
+Use India Standard Time / Asia-Kolkata.
+
+When the countdown reaches zero, display:
+
+"TODAY IS THE DAY ❤️"
+
+Do not show negative numbers.
+
+---
+
+# DESIGN
+
+Use a premium wedding invitation style.
+
+Recommended colors:
+
+* Cream
+* Burgundy / Maroon
+* Gold
+* Dark green accents
+* White
+
+Use elegant fonts.
+
+Use one decorative font for names and a clean font for normal text.
+
+The design must look excellent on:
+
+* 320px mobile
+* 375px mobile
+* 390px mobile
+* 430px mobile
+* Tablet
+* Desktop
+
+Mobile is the PRIMARY target.
+
+---
+
+# ANIMATIONS
+
+Use CSS animations.
+
+Include:
+
+* Fade in
+* Fade out
+* Slide up
+* Image reveal
+* Button hover
+* Button tap
+* Smooth page transition
+* Countdown animation
+* Subtle floating decorative elements
+
+Animations must be elegant.
+
+Do not make the website feel like a game.
+
+Respect:
+
+prefers-reduced-motion
+
+and reduce animations for users who have enabled reduced motion.
+
+---
+
+# PHOTO HANDLING
+
+Create:
+
+assets/images/
+
+Use placeholder files initially.
+
+Expected files:
+
+assets/images/couple.jpg
+assets/images/couple2.jpg
+assets/images/background.jpg
+
+Make it extremely easy for me to replace these images.
+
+Do not embed images as base64.
+
+Use normal image paths.
+
+Add proper alt text.
+
+Optimize the image display for mobile.
+
+---
+
+# MUSIC
+
+background music.
+
+Use:
+
+assets/music/wedding.mp3
+
+Music must NOT autoplay before user interaction.
+
+After the user clicks:
+
+Invite
+
+you should start the music.
+
+Add a small music control:
+
+🎵
+
+The user must be able to pause/play the music.
+
+If the music file does not exist, the website must still work normally.
+
+---
+
+# CONFIGURATION
+
+Create a single JavaScript configuration object:
+
+const weddingConfig = {
+groomName: "YOUR NAME",
+brideName: "BRIDE NAME",
+
+```
+weddingDate: "2026-11-13T00:00:00+05:30",
+
+venueName: "YOUR VENUE",
+venueAddress: "MADURAI, TAMIL NADU",
+
+mapsUrl: "YOUR GOOGLE MAPS URL",
+
+coupleImage: "assets/images/couple.jpg",
+
+music: "assets/music/wedding.mp3"
+```
+
+};
+
+All personal wedding information must be controlled from this configuration.
+
+Do not duplicate names, dates or URLs throughout the code.
+
+---
+
+# FILE STRUCTURE
+
+Create:
+
+index.html
+
+invitation.html
+
+css/
+style.css
+
+js/
+config.js
+script.js
+countdown.js
+
+assets/
+images/
+couple.jpg
+couple2.jpg
+background.jpg
+
+```
+music/
+    wedding.mp3
+```
+
+README.md
+
+---
+
+# PAGE NAVIGATION
+
+Page 1:
+
+index.html
+
+Button:
+
+"OPEN INVITATION"
+
+opens:
+
+invitation.html
+
+Use a beautiful transition.
+
+Page 2:
+
+invitation.html
+
+Contains:
+
+SAVE THE DATE
+↓
+OUR PHOTO
+↓
+NEXT
+↓
+VENUE
+↓
+GOOGLE MAPS
+↓
+COUNTDOWN
+
+The page should feel like one continuous invitation even though it is technically a second page.
+
+---
+
+# GOOGLE MAPS
+
+Use:
+
+<a href="YOUR_GOOGLE_MAPS_URL" target="_blank">
+
+Make sure it opens Google Maps in a new browser tab.
+
+Keep the URL configurable.
+
+---
+
+# WHATSAPP
+
+At the bottom add:
+
+"SHARE INVITATION ❤️"
+
+When clicked, use WhatsApp sharing.
+
+The message should be:
+
+"You're invited to our wedding ❤️
+
+[GROOM NAME] & [BRIDE NAME]
+
+13 November 2026
+Madurai
+
+We would love to celebrate our special day with you!"
+
+Use the current website URL dynamically.
+
+---
+
+# SAVE DATE
+
+Add a:
+
+"📅 SAVE THE DATE"
+
+button.
+
+When clicked, generate/download an .ics calendar file for:
+
+[GROOM NAME] & [BRIDE NAME] Wedding
+
+Date:
+13 November 2026
+
+Location:
+[VENUE NAME], Madurai
+
+Do this entirely with JavaScript.
+
+No backend is required.
+
+---
+
+# IMPORTANT
+
+Do NOT add unnecessary features.
+
+Do NOT create:
+
+* Login
+* Database
+* Admin panel
+* User accounts
+* Backend APIs
+* Authentication
+* Payment system
+
+This is a simple wedding invitation.
+
+Prioritize:
+
+1. Beautiful design
+2. Mobile experience
+3. Fast loading
+4. Smooth animations
+5. Reliable countdown
+6. Easy photo replacement
+7. Easy configuration
+8. Easy deployment
+
+---
+
+# SEO / WHATSAPP PREVIEW
+
+Add proper metadata to index.html:
+
+Title:
+
+[GROOM NAME] ❤️ [BRIDE NAME] — Wedding Invitation
+
+Description:
+
+"You're invited to celebrate our special day on 13 November 2026 in Madurai."
+
+Add Open Graph metadata:
+
+og:title
+og:description
+og:image
+og:url
+og:type
+
+Use the couple photo as the social preview image.
+
+Add a favicon.
+
+---
+
+# ACCESSIBILITY
+
+Use:
+
+* Semantic HTML
+* Proper headings
+* Alt text
+* Accessible buttons
+* Keyboard-friendly controls
+* Good color contrast
+
+---
+
+# PERFORMANCE
+
+The website should load quickly on mobile data.
+
+Do not use large libraries.
+
+Do not use React.
+
+Do not use Bootstrap unless absolutely necessary.
+
+Prefer custom CSS.
+
+Optimize image dimensions.
+
+Use lazy loading where appropriate.
+
+Keep JavaScript lightweight.
+
+---
+
+# DEPLOYMENT
+
+Prepare the website for GitHub Pages and Vercel.
+
+README.md must explain:
+
+1. How to replace names
+2. How to replace photos
+3. How to replace the Google Maps URL
+4. How to replace music
+5. How to change the wedding date
+6. How to test locally
+7. How to upload to GitHub
+8. How to deploy on Vercel
+9. How to connect my custom domain
+
+The website must work without any server-side code.
+
+---
+
+# FINAL TEST
+
+Before finishing, verify:
+
+* Opening page works
+* Open Invitation button works
+* Invitation page loads
+* Couple photo displays
+* Save the Date displays
+* Next button works
+* Google Maps opens
+* Countdown works
+* Countdown updates every second
+* Countdown uses IST
+* Countdown reaches zero correctly
+* Calendar download works
+* WhatsApp sharing works
+* Music play/pause works
+* Website works without music
+* Website works on mobile
+* Website works on desktop
+* No horizontal scrolling
+* No console errors
+* All links work
+* All images have alt text
+
+Run a final test and fix all errors.
+
+Do not finish until the website is functional.
+
+Start by creating the complete project structure and then implement the website.

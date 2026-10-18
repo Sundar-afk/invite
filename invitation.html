@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f3e9">
+  <meta name="description" content="A joyful wedding invitation. Join us as we begin our next chapter together.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Wedding Invitation">
+  <meta property="og:description" content="Join us as we begin our next chapter together.">
+  <meta property="og:image" content="assets/images/couple.jpg">
+  <meta property="og:url" content="">
+  <title>Wedding Invitation</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23481b26'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='36' fill='%23dfc27a'%3E%E2%99%A5%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/config.js" defer></script>
+  <script src="js/countdown.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body class="invitation-page">
+  <audio id="weddingMusic" loop preload="none"></audio>
+  <button class="music-toggle" id="musicToggle" type="button" aria-label="Play music" title="Play music" hidden>
+    <span aria-hidden="true">♫</span>
+  </button>
+  <main>
+    <section class="date-hero" id="top" aria-labelledby="saveDateHeading">
+      <div class="hero-ornament hero-ornament-left" aria-hidden="true">✳</div>
+      <div class="hero-ornament hero-ornament-right" aria-hidden="true">❋</div>
+      <div class="date-content reveal">
+        <p class="eyebrow"><span></span><span data-copy="saveTheDate"></span><span></span></p>
+        <h1 id="saveDateHeading" class="couple-names"><span data-config="groomName"></span><i aria-hidden="true">&</i><span data-config="brideName"></span></h1>
+        <p class="date-line"><span class="date-day" data-date="day"></span><span class="date-month" data-date="month"></span><span class="date-year" data-date="year"></span></p>
+        <p class="city-line" data-config="city"></p>
+      </div>
+      <figure class="invitation-photo-frame reveal">
+        <img class="invitation-photo" data-image="couple2Image" alt="" fetchpriority="high">
+        <figcaption data-copy="photoCaption"></figcaption>
+      </figure>
+      <p class="love-note reveal" data-copy="loveQuote"></p>
+      <a class="next-cue" href="#venue">
+        <span class="next-cue-label" data-copy="next"></span>
+        <span class="next-cue-arrow" aria-hidden="true">↓</span>
+      </a>
+    </section>
+
+    <section class="venue-section" id="venue" aria-labelledby="venueHeading">
+      <div class="venue-pattern" aria-hidden="true"></div>
+      <div class="venue-inner reveal">
+        <p class="eyebrow eyebrow-light"><span></span><span data-copy="joinUs"></span><span></span></p>
+        <h2 id="venueHeading" data-copy="venueHeading"></h2>
+        <div class="venue-flourish" aria-hidden="true">❧</div>
+        <p class="venue-name" data-config="venueName"></p>
+        <p class="venue-address" data-config="venueAddress"></p>
+        <a class="map-button" data-href="mapsUrl" href="#venue" target="_blank" rel="noopener noreferrer">
+          <span aria-hidden="true">⌖</span><span data-copy="openMaps"></span>
+        </a>
+      </div>
+      <a class="section-down" href="#countdown" aria-label="Continue to countdown"><span aria-hidden="true">↓</span></a>
+    </section>
+
+    <section class="countdown-section" id="countdown" aria-labelledby="countdownHeading">
+      <div class="countdown-inner reveal">
+        <p class="eyebrow"><span></span><span data-copy="countdownEyebrow"></span><span></span></p>
+        <h2 id="countdownHeading" data-copy="countdownTitle"></h2>
+        <div class="countdown-grid" role="timer" aria-live="off" aria-atomic="true">
+          <div class="count-unit"><span class="count-value" id="countDays">--</span><span class="count-label" data-copy="days"></span></div>
+          <div class="count-unit"><span class="count-value" id="countHours">--</span><span class="count-label" data-copy="hours"></span></div>
+          <div class="count-unit"><span class="count-value" id="countMinutes">--</span><span class="count-label" data-copy="minutes"></span></div>
+          <div class="count-unit"><span class="count-value" id="countSeconds">--</span><span class="count-label" data-copy="seconds"></span></div>
+        </div>
+        <p class="today-message" id="todayMessage" data-copy="todayMessage" hidden></p>
+        <div class="countdown-rule" aria-hidden="true"><span>✦</span></div>
+        <p class="countdown-signoff"><span data-config="groomName"></span><i aria-hidden="true">♥</i><span data-config="brideName"></span></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="invitation-footer">
+    <p data-copy="footerNote"></p>
+    <div class="footer-actions">
+      <button class="outline-button" id="saveDateButton" type="button"><span aria-hidden="true">▣</span><span data-copy="calendarButton"></span></button>
+      <a class="share-button" id="shareButton" href="https://wa.me/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">♡</span><span data-copy="shareButton"></span></a>
+    </div>
+    <a class="back-to-top" href="#top" data-copy="backToTop"></a>
+  </footer>
+</body>
+</html>
