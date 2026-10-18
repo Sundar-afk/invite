@@ -69,7 +69,7 @@ button { color: inherit; }
 .open-button:active { transform: scale(.97); }
 .opening-footer { margin: 13px 0 10px; color: var(--muted); font-family: var(--serif); font-size: 16px; font-style: italic; }
 .card-rule-bottom { width: 52%; margin-bottom: 0; }
-.scene-caption { position: absolute; right: 22px; bottom: 8px; left: 22px; margin: 0; color: rgba(255, 253, 248, .72); text-align: center; font-family: var(--serif); font-size: 15px; }
+.scene-caption { position: absolute; right: 22px; bottom: 24px; left: 22px; margin: 0; color: rgba(255, 253, 248, .84); text-align: center; font-family: var(--serif); font-size: 17px; font-style: italic; }
 .is-opening .opening-card { transform: scale(.95) translateY(12px); opacity: 0; }
 
 /* Invitation opening section */
@@ -86,9 +86,9 @@ button { color: inherit; }
 .date-day { color: var(--maroon); font-family: var(--serif); font-size: 30px; font-weight: 600; }
 .date-month { text-transform: uppercase; }
 .city-line { margin: 1px 0 0; color: var(--muted); font-size: 11px; font-weight: 700; }
-.invitation-photo-frame { position: relative; grid-column: 2; grid-row: 1 / span 2; justify-self: center; width: min(100%, 420px); margin: 0; padding: 8px; border: 1px solid var(--gold); background: var(--paper); box-shadow: 0 18px 42px rgba(47, 35, 27, .12); transform: rotate(1deg); }
+.invitation-photo-frame { position: relative; grid-column: 2; grid-row: 1 / span 2; justify-self: center; width: min(100%, 420px); margin: 0; padding: 8px; border: 1px solid var(--gold); background: var(--paper); box-shadow: 0 18px 42px rgba(47, 35, 27, .12); }
 .invitation-photo-frame::before { position: absolute; z-index: 1; inset: 4px; border: 1px solid rgba(201, 166, 91, .36); content: ''; pointer-events: none; }
-.invitation-photo { display: block; width: 100%; aspect-ratio: 1.03; object-fit: cover; object-position: 50% 47%; }
+.invitation-photo { display: block; width: 100%; aspect-ratio: 1.65; object-fit: cover; object-position: 50% 50%; }
 .invitation-photo-frame figcaption { padding: 9px 4px 1px; color: #796952; text-align: center; font-family: var(--serif); font-size: 15px; font-style: italic; }
 .love-note { grid-column: 1; grid-row: 2; justify-self: center; max-width: 470px; margin: 9px auto 0; color: #62574e; text-align: center; font-family: var(--serif); font-size: 19px; line-height: 1.45; }
 .next-cue { grid-column: 1 / -1; grid-row: 3; justify-self: center; display: flex; flex-direction: column; align-items: center; gap: 0; min-width: 90px; padding: 4px 15px 0; color: var(--maroon); text-decoration: none; font-size: 11px; font-weight: 700; }
@@ -166,12 +166,14 @@ a:focus-visible, button:focus-visible { outline: 3px solid #ca9e42; outline-offs
   .opening-photo-wrap { width: 151px; height: 153px; margin-bottom: 14px; }
   .opening-subtitle { margin: 8px 0 12px; }
   .opening-footer { margin-top: 10px; }
-  .date-hero { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto auto; gap: 18px; min-height: auto; padding: 62px 28px 37px; }
+  .date-hero { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto auto; gap: 9px; min-height: auto; padding: 50px 28px 25px; }
   .date-content { grid-column: 1; grid-row: 1; align-self: auto; }
-  .couple-names { font-size: 46px; }
-  .invitation-photo-frame { grid-column: 1; grid-row: 2; width: min(100%, 390px); }
-  .love-note { grid-column: 1; grid-row: 3; margin-top: 0; font-size: 18px; }
-  .next-cue { grid-column: 1; grid-row: 4; }
+  .couple-names { font-size: 40px; }
+  .date-line { margin-top: 12px; }
+  .invitation-photo-frame { grid-column: 1; grid-row: 2; width: min(100%, 360px); }
+  .love-note { grid-column: 1; grid-row: 3; margin-top: 0; font-size: 15px; line-height: 1.3; }
+  .next-cue { grid-column: 1; grid-row: 4; padding-top: 0; }
+  .next-cue-arrow { width: 28px; height: 28px; font-size: 15px; }
   .hero-ornament { font-size: 31px; }
   .hero-ornament-left { top: 31px; left: 7%; }
   .hero-ornament-right { right: 7%; bottom: 27px; }
@@ -188,12 +190,14 @@ a:focus-visible, button:focus-visible { outline: 3px solid #ca9e42; outline-offs
   .deity-line { font-size: 10px; }
   .opening-blessing { font-size: 11px; }
   .open-button { gap: 8px; padding-right: 14px; padding-left: 14px; }
-  .date-hero { padding-right: 23px; padding-left: 23px; }
+  .date-hero { gap: 6px; padding: 36px 18px 8px; }
+  .invitation-photo { aspect-ratio: 1.9; }
   .date-line { gap: 5px; font-size: 11px; }
   .date-day { font-size: 27px; }
   .countdown-grid { gap: 2px; }
   .count-value { font-size: 37px; }
   .count-label { font-size: 8px; }
+  .tamil-site .couple-names { font-size: 27px; }
   .footer-actions { gap: 7px; }
   .outline-button, .share-button { padding-right: 11px; padding-left: 11px; font-size: 10px; }
 }
@@ -234,6 +238,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #ca9e42; outline-offs
   .tamil-site .couple-names { font-size: 32px; }
   .tamil-site .count-value { font-size: 40px; }
   .tamil-site .countdown-inner h2 { font-size: 30px; }
+  .tamil-site .love-note { font-size: 15px; line-height: 1.3; }
   .tamil-site.opening-page .name-lockup h1,
   .tamil-site.opening-page .second-name { font-size: 43px; }
   .tamil-site.opening-page .opening-subtitle { font-size: 20px; }
