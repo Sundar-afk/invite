@@ -1,7 +1,9 @@
 const weddingConfig = Object.freeze({
   groomName: "Sundar S",
   brideName: "Harini S",
-  weddingDate: "2026-11-13T00:00:00+05:30",
+  weddingDate: "2026-11-13T07:35:00+05:30",
+  weddingEndDate: "2026-11-13T09:00:00+05:30",
+  receptionDate: "2026-11-12T00:00:00+05:30",
   venueName: "SIVA LAKSHMI MEETING HALL",
   venueAddress: "Rajaji Main Street 1, Tirumangalam, Tamil Nadu 625706",
   city: "Madurai",
@@ -26,6 +28,12 @@ const weddingConfig = Object.freeze({
     next: "NEXT",
     joinUs: "JOIN US",
     venueHeading: "Wedding Venue",
+    weddingLabel: "WEDDING MUHURTHAM",
+    weddingTime: "7:35–9:00 AM",
+    receptionLabel: "RECEPTION",
+    receptionTime: "EVENING",
+    weddingCalendarLabel: "Wedding Muhurtham",
+    receptionCalendarLabel: "Reception (Evening)",
     openMaps: "OPEN GOOGLE MAPS",
     countdownTitle: "COUNTING DOWN TO OUR BIG DAY",
     days: "DAYS",
@@ -41,6 +49,7 @@ const weddingConfig = Object.freeze({
     pauseMusic: "Pause music",
     eventTitle: "Wedding",
     whatsappIntro: "You're invited to our wedding ♥",
+    whatsappReceptionIntro: "Reception",
     whatsappClosing: "We would love to celebrate our special day with you!"
   }
 });

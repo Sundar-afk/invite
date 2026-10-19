@@ -4,13 +4,13 @@ A lightweight, bilingual static wedding invitation built with HTML, CSS, and van
 
 ## Personalise the invitation
 
-Edit `js/config.js` for the English site or `tamil/js/config.js` for the Tamil site. The `weddingConfig` object controls names, date, venue, map link, photos, music, and the page's text. Keep the date in ISO format with its India offset, for example `2026-11-13T00:00:00+05:30`.
+Edit `js/config.js` for the English site or `tamil/js/config.js` for the Tamil site. The `weddingConfig` object controls names, ceremony and reception dates, venue, map link, photos, music, and the page's text. Keep event timestamps in ISO format with the India offset, for example `2026-11-13T07:35:00+05:30`.
 
 Replace the images at `assets/images/couple.jpg`, `couple2.jpg`, and `background.jpg`. The Tamil site has its own copies under `tamil/assets/images/`. Keep the filenames or update the corresponding image paths in that site's config. JPG, PNG, and WebP images work; the layout crops images to fit, so the originals do not need a particular pixel size. Add descriptive alt text in the matching `coupleImageAlt` and `couple2ImageAlt` settings.
 
 Replace the music at `assets/music/wedding.mp3` and `tamil/assets/music/wedding.mp3`, or change the `music` path in the relevant config. Music starts only after the visitor opens the invitation. If the file is missing, the invitation, countdown, calendar, and sharing still work.
 
-The venue address, Google Maps URL, and wedding date are configured in the same object. The calendar download is an all-day event on the configured date. The countdown interprets the configured date in India Standard Time.
+The venue address, Google Maps URL, ceremony start/end, and reception date are configured in the same object. The calendar download includes the timed wedding ceremony and a reception entry for 12 November (listed as evening; no exact time is set). The countdown targets the ceremony start in India Standard Time.
 
 ## Test locally
 

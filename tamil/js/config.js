@@ -3,7 +3,9 @@ const weddingConfig = Object.freeze({
   brideName: "ஹரிணி S",
   groomNameEnglish: "Sundar S",
   brideNameEnglish: "Harini S",
-  weddingDate: "2026-11-13T00:00:00+05:30",
+  weddingDate: "2026-11-13T07:35:00+05:30",
+  weddingEndDate: "2026-11-13T09:00:00+05:30",
+  receptionDate: "2026-11-12T00:00:00+05:30",
   venueName: "சிவலட்சுமி திருமண மண்டபம்",
   venueAddress: "ராஜாஜி மெயின் ரோடு, திருமங்கலம், மதுரை, தமிழ்நாடு 625706",
   city: "மதுரை",
@@ -28,6 +30,12 @@ const weddingConfig = Object.freeze({
     next: "அடுத்து",
     joinUs: "வாருங்கள், எங்களுடன் இணையுங்கள்",
     venueHeading: "திருமண மண்டபம்",
+    weddingLabel: "திருமண முகூர்த்தம்",
+    weddingTime: "காலை 7:35–9:00",
+    receptionLabel: "வரவேற்பு",
+    receptionTime: "மாலை",
+    weddingCalendarLabel: "திருமண முகூர்த்தம்",
+    receptionCalendarLabel: "மாலை வரவேற்பு",
     openMaps: "கூகுள் மேப்பில் வழியைப் பார்க்கவும்",
     countdownTitle: "எங்கள் திருமணத்திற்கு இன்னும்",
     days: "நாட்கள்",
@@ -44,6 +52,7 @@ const weddingConfig = Object.freeze({
     eventTitle: "திருமணம்",
     openingTitle: "Wedding Invitation",
     whatsappIntro: "எங்கள் திருமணத்திற்கு உங்களை அன்புடன் அழைக்கிறோம் ♥",
+    whatsappReceptionIntro: "வரவேற்பு",
     whatsappClosing: "இந்த மகிழ்ச்சியான நாளை உங்களுடன் கொண்டாட ஆவலாக இருக்கிறோம்!"
   }
 });

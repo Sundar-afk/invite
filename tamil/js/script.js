@@ -48,6 +48,18 @@
     document.querySelectorAll('[data-date="year"]').forEach((element) => { element.textContent = dateComponents.year; });
   }
   formattedWeddingDate = [dateComponents.day, dateComponents.month, dateComponents.year].filter(Boolean).join(" ");
+      const formatConfiguredDate = (dateValue, options) => {
+        const date = new Date(dateValue);
+        if (Number.isNaN(date.getTime())) return "";
+        return new Intl.DateTimeFormat(config.dateLocale, {
+          timeZone: "Asia/Kolkata", day: "numeric", month: "long", ...options
+        }).format(date);
+      };
+      const formattedReceptionDate = formatConfiguredDate(config.receptionDate);
+      document.querySelectorAll("[data-event-date]").forEach((element) => {
+        const dateValue = config[element.dataset.eventDate];
+        element.textContent = formatConfiguredDate(dateValue);
+      });
     const openingDate = document.querySelector('[data-copy="openingDate"]');
     if (openingDate && !Number.isNaN(weddingDate.getTime())) {
       openingDate.textContent = new Intl.DateTimeFormat("en-IN", {
@@ -61,7 +73,7 @@
   });
 
   document.title = displayGroomName + " ♥ " + displayBrideName + " — " + (englishOpening ? (strings.openingTitle || strings.eventTitle) : strings.eventTitle);
-  const description = strings.whatsappIntro + " " + formattedWeddingDate + " · " + config.city + ".";
+  const description = strings.whatsappIntro + " " + formattedWeddingDate + " · " + strings.weddingTime + " · " + config.city + ".";
   document.querySelector('meta[name="description"]')?.setAttribute("content", description);
   document.querySelector('meta[property="og:title"]')?.setAttribute("content", document.title);
   document.querySelector('meta[property="og:description"]')?.setAttribute("content", description);
@@ -118,28 +130,41 @@
   const saveDateButton = document.getElementById("saveDateButton");
   if (saveDateButton) {
     saveDateButton.addEventListener("click", () => {
-      const dateParts = new Intl.DateTimeFormat("en-CA", {
-        timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit"
-      }).formatToParts(weddingDate);
-      const parts = Object.fromEntries(dateParts.map((part) => [part.type, part.value]));
-      const startDate = parts.year + parts.month + parts.day;
-      const nextDate = new Date(Date.UTC(Number(parts.year), Number(parts.month) - 1, Number(parts.day) + 1));
-      const endDate = nextDate.toISOString().slice(0, 10).replaceAll("-", "");
       const escapeCalendarText = (value) => String(value).replace(/\\/g, "\\\\").replace(/\r?\n/g, "\\n").replace(/,/g, "\\,").replace(/;/g, "\\;");
-      const timestamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-      const eventTitle = config.groomName + " & " + config.brideName + " " + strings.eventTitle;
+      const toCalendarTimestamp = (dateValue) => new Date(dateValue).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+      const toCalendarDate = (dateValue) => {
+        const parts = Object.fromEntries(new Intl.DateTimeFormat("en-CA", {
+          timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit"
+        }).formatToParts(new Date(dateValue)).map((part) => [part.type, part.value]));
+        return { stamp: parts.year + parts.month + parts.day, parts };
+      };
+      const reception = toCalendarDate(config.receptionDate);
+      const nextReceptionDay = new Date(Date.UTC(
+        Number(reception.parts.year), Number(reception.parts.month) - 1, Number(reception.parts.day) + 1
+      )).toISOString().slice(0, 10).replaceAll("-", "");
+      const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
       const location = config.venueName + ", " + config.venueAddress;
+      const coupleName = config.groomName + " & " + config.brideName;
+      const weddingEvent = [
+        "BEGIN:VEVENT", "UID:wedding-" + Date.now() + "@invitation", "DTSTAMP:" + stamp,
+        "DTSTART:" + toCalendarTimestamp(config.weddingDate), "DTEND:" + toCalendarTimestamp(config.weddingEndDate),
+        "SUMMARY:" + escapeCalendarText(coupleName + " " + strings.weddingCalendarLabel),
+        "LOCATION:" + escapeCalendarText(location), "DESCRIPTION:" + escapeCalendarText(config.city), "END:VEVENT"
+      ];
+      const receptionEvent = [
+        "BEGIN:VEVENT", "UID:reception-" + Date.now() + "@invitation", "DTSTAMP:" + stamp,
+        "DTSTART;VALUE=DATE:" + reception.stamp, "DTEND;VALUE=DATE:" + nextReceptionDay,
+        "SUMMARY:" + escapeCalendarText(coupleName + " " + strings.receptionCalendarLabel),
+        "LOCATION:" + escapeCalendarText(location), "DESCRIPTION:" + escapeCalendarText(strings.receptionTime), "END:VEVENT"
+      ];
       const calendar = [
         "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Wedding Invitation//EN", "CALSCALE:GREGORIAN",
-        "BEGIN:VEVENT", "UID:wedding-" + Date.now() + "@invitation", "DTSTAMP:" + timestamp,
-        "DTSTART;VALUE=DATE:" + startDate, "DTEND;VALUE=DATE:" + endDate,
-        "SUMMARY:" + escapeCalendarText(eventTitle), "LOCATION:" + escapeCalendarText(location),
-        "DESCRIPTION:" + escapeCalendarText(config.city), "END:VEVENT", "END:VCALENDAR"
+        ...weddingEvent, ...receptionEvent, "END:VCALENDAR"
       ].join("\r\n");
       const file = new Blob([calendar], { type: "text/calendar;charset=utf-8" });
       const download = document.createElement("a");
       download.href = URL.createObjectURL(file);
-      download.download = "wedding-invitation.ics";
+      download.download = "wedding-and-reception.ics";
       document.body.appendChild(download);
       download.click();
       download.remove();
@@ -153,7 +178,8 @@
       strings.whatsappIntro,
       "",
       config.groomName + " & " + config.brideName,
-        formattedWeddingDate,
+        formattedWeddingDate + " · " + strings.weddingTime,
+        strings.whatsappReceptionIntro + " · " + formattedReceptionDate + " · " + strings.receptionTime,
         config.city,
       "",
       strings.whatsappClosing,
